@@ -8,21 +8,21 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: nginx-web
-  minReplicas: 2
-  maxReplicas: 10
+  minReplicas: 2 # Minimum number of replicas to maintain
+  maxReplicas: 10 # Maximum number of replicas to scale up to
   metrics:
     - type: Resource
       resource:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 50
+          averageUtilization: 50 ## Target CPU utilization percentage
     - type: Resource
       resource:
         name: memory
         target:
           type: Utilization
-          averageUtilization: 60
+          averageUtilization: 60 ## Target Memory utilization percentage
   behavior:
     scaleUp:
       stabilizationWindowSeconds: 60  # Wait for 5 minutes before scaling up
