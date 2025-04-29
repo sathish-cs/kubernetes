@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution: # Node affinity rules
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: env # Node label key
+                operator: In
+                values:
+                - dev # Node label value
+      containers:
+      - image: nginx
+        name: nginx
+        resources: {}
+status: {}
