@@ -11,7 +11,7 @@ The pods will be scheduled only if the nodes has the matching labels. If labels 
 
 ##### PreferredDuringSchedulingIgnoredDuringExecution
 
-This looks primarly for the pods to be scheduled on the nodes that match the lables if its doesnt exist then it can be scheduled on any other nodes that doesnt have any taints. 
+This looks primarly for the pods to be scheduled on the nodes that match the lables if its doesnt exist or already overload then it might be scheduled on any other nodes based on serveral factors like resource utlization, taints and tolerations etc. 
 
 ###### Label a node
 
