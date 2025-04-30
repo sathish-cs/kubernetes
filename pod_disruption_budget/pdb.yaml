@@ -1,0 +1,9 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: frontend-pdb
+spec:
+  minAvailable: 50% # Specify the minimum number of available pods or percentage of replicas 
+  selector:
+    matchLabels:
+      app: frontend # Specify the label selector to identify the pods that the PDB applies
