@@ -25,19 +25,19 @@ spec:
           averageUtilization: 60 ## Target Memory utilization percentage
   behavior:
     scaleUp:
-      stabilizationWindowSeconds: 60  # Wait for 5 minutes before scaling up
-      selectPolicy: Min # Choose the  policy for scaling up that has the minimum value. It can create more pods if the load is continuosly high.
+      stabilizationWindowSeconds: 180  # Wait for 3 minutes before scaling out
+      selectPolicy: Min # Choose the  policy for scaling in  that has the minimum value.
       policies:
         - type: Percent
-          value: 100       # Can scale up by 100% of pods
-          periodSeconds: 10
+          value: 100       # Can scale up by 100% of pods thats currently running
+          periodSeconds: 30
         - type: Pods
           value: 5      
-          periodSeconds: 10
+          periodSeconds: 30
     scaleDown:
-      stabilizationWindowSeconds: 300  # Wait 5 min before scaling down
-      selectPolicy: Max # Choose the maximum policy for scaling down
+      stabilizationWindowSeconds: 180  # Wait 3 min before scaling in
+      selectPolicy: Max 
       policies:
         - type: Percent
-          value: 100     # Can scale down by 100% of pods but it will not scale down to 0 pods to maintain the minimum number of pods.
-          periodSeconds: 10 
+          value: 50     # Can scale down by 50% of pods each time but it will not scale down to 0 pods to maintain the minimum number of pods.
+          periodSeconds: 30 
